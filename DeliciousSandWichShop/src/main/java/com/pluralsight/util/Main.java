@@ -1,8 +1,8 @@
 package com.pluralsight.util;
 
 public class Main {
-        public static void main(String[] args) {
-            // Call the UserInterface main method to start the application
-            Userinterface.main(args);
-        }
+    public static void main(String[] args) {
+        // Start the user interface
+        UserInterface.displayHomeScreen();  // Display the home screen to the user
     }
+}

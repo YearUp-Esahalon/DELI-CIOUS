@@ -1,31 +1,41 @@
 package com.pluralsight.Classes;
 
-
 public abstract class OrderItem {
-    protected String name;  // The name of the item (e.g., "Sandwich", "Drink", "Chips")
-    protected double price;  // The price of the item
+    private String name;  // Name of the item (e.g., Sandwich, Chips, Drink)
+    protected double price;  // Price of the item
 
-    // Constructor to initialize common properties
+    // Constructor to initialize name and price
     public OrderItem(String name, double price) {
         this.name = name;
         this.price = price;
     }
 
-    // Abstract method to be implemented by subclasses to calculate the price
-    public abstract double calculatePrice();
-
-    // Getter for name
+    // Getter for the name
     public String getName() {
         return name;
     }
 
-    // Getter for price
+    // Setter for the name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter for the price
     public double getPrice() {
         return price;
     }
 
-    // Abstract toString method to be implemented by subclasses to display the item details
-    @Override
-    public abstract String toString();
-}
+    // Setter for the price
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
+    // Abstract method to calculate price (this should be implemented by subclasses)
+    public abstract double calculatePrice();
+
+    // toString method to represent the item as a string
+    @Override
+    public String toString() {
+        return name + ": $" + price;
+    }
+}
