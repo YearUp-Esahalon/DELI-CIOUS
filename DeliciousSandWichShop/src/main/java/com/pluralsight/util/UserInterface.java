@@ -49,26 +49,40 @@ public class UserInterface {
         System.out.println("0. Cancel Order");
         int choice = getUserChoice();
 
+        // 1st Switch Statement (Using Traditional `break`)
         switch (choice) {
             case 1:
                 addSandwich();
-                break;
+                break;  // Traditional break
             case 2:
                 addDrink();
-                break;
+                break;  // Traditional break
             case 3:
                 addChips();
-                break;
+                break;  // Traditional break
             case 4:
                 checkout();
-                break;
+                break;  // Traditional break
             case 0:
                 cancelOrder();
-                break;
+                break;  // Traditional break
             default:
                 System.out.println("Invalid choice, please try again.");
                 displayOrderScreen();
-                break;
+                break;  // Traditional break
+        }
+
+        // 2nd Switch Statement (Using Lambda `->`)
+        switch (choice) {
+            case 1 -> addSandwich();
+            case 2 -> addDrink();
+            case 3 -> addChips();
+            case 4 -> checkout();
+            case 0 -> cancelOrder();
+            default -> {
+                System.out.println("Invalid choice, please try again.");
+                displayOrderScreen();
+            }
         }
     }
 
@@ -85,75 +99,42 @@ public class UserInterface {
         System.out.println("Select bread type:");
         System.out.println("1. White\n2. Wheat\n3. Rye\n4. Wrap");
         int breadChoice = getUserChoice();
-        String bread = "";
-        switch (breadChoice) {
-            case 1:
-                bread = "White";
-                break;
-            case 2:
-                bread = "Wheat";
-                break;
-            case 3:
-                bread = "Rye";
-                break;
-            case 4:
-                bread = "Wrap";
-                break;
-            default:
-                bread = "White";
-                break;
-        }
+        String bread = switch (breadChoice) {
+            case 1 -> "White";
+            case 2 -> "Wheat";
+            case 3 -> "Rye";
+            case 4 -> "Wrap";
+            default -> "White";
+        };
 
         System.out.println("Select sandwich size:");
         System.out.println("1. 4\" ($5.50)\n2. 8\" ($7.00)\n3. 12\" ($8.50)");
         int sizeChoice = getUserChoice();
-        String size = "";
-        switch (sizeChoice) {
-            case 1:
-                size = "4\"";
-                break;
-            case 2:
-                size = "8\"";
-                break;
-            case 3:
-                size = "12\"";
-                break;
-            default:
-                size = "8\"";
-                break;
-        }
+        String size = switch (sizeChoice) {
+            case 1 -> "4\"";
+            case 2 -> "8\"";
+            case 3 -> "12\"";
+            default -> "8\"";
+        };
 
         // Meat selection
         System.out.println("Select your meat:");
         System.out.println("1. Turkey\n2. Chicken\n3. Ham\n4. Roast Beef\n5. Veggie");
         int meatChoice = getUserChoice();
-        String meat = "";
-        switch (meatChoice) {
-            case 1:
-                meat = "Turkey";
-                break;
-            case 2:
-                meat = "Chicken";
-                break;
-            case 3:
-                meat = "Ham";
-                break;
-            case 4:
-                meat = "Roast Beef";
-                break;
-            case 5:
-                meat = "Veggie";
-                break;
-            default:
-                meat = "Turkey";
-                break;
-        }
+        String meat = switch (meatChoice) {
+            case 1 -> "Turkey";
+            case 2 -> "Chicken";
+            case 3 -> "Ham";
+            case 4 -> "Roast Beef";
+            case 5 -> "Veggie";
+            default -> "Turkey";
+        };
 
         // Toasted option
         System.out.println("Do you want your sandwich toasted?");
         System.out.println("1. Yes\n2. No");
         int toastedChoice = getUserChoice();
-        boolean toasted = (toastedChoice == 1);
+        boolean toasted = toastedChoice == 1;
 
         Sandwich sandwich = new Sandwich(size, bread, meat, toasted);
         addToppings(sandwich);
@@ -167,24 +148,12 @@ public class UserInterface {
         int toppingChoice;
         while ((toppingChoice = getUserChoice()) != 0) {
             switch (toppingChoice) {
-                case 1:
-                    sandwich.addTopping("Cheese");
-                    break;
-                case 2:
-                    sandwich.addTopping("Lettuce");
-                    break;
-                case 3:
-                    sandwich.addTopping("Tomato");
-                    break;
-                case 4:
-                    sandwich.addTopping("Pickles");
-                    break;
-                case 5:
-                    sandwich.addTopping("Onion");
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
-                    break;
+                case 1 -> sandwich.addTopping("Cheese");
+                case 2 -> sandwich.addTopping("Lettuce");
+                case 3 -> sandwich.addTopping("Tomato");
+                case 4 -> sandwich.addTopping("Pickles");
+                case 5 -> sandwich.addTopping("Onion");
+                default -> System.out.println("Invalid choice.");
             }
             System.out.println("Add another topping or press 0 to stop.");
         }
@@ -195,40 +164,22 @@ public class UserInterface {
         System.out.println("Select drink size:");
         System.out.println("1. Small\n2. Medium\n3. Large");
         int sizeChoice = getUserChoice();
-        String size = "";
-        switch (sizeChoice) {
-            case 1:
-                size = "Small";
-                break;
-            case 2:
-                size = "Medium";
-                break;
-            case 3:
-                size = "Large";
-                break;
-            default:
-                size = "Medium";
-                break;
-        }
+        String size = switch (sizeChoice) {
+            case 1 -> "Small";
+            case 2 -> "Medium";
+            case 3 -> "Large";
+            default -> "Medium";
+        };
 
         System.out.println("Select flavor:");
         System.out.println("1. Cola\n2. Lemonade\n3. Water");
         int flavorChoice = getUserChoice();
-        String flavor = "";
-        switch (flavorChoice) {
-            case 1:
-                flavor = "Cola";
-                break;
-            case 2:
-                flavor = "Lemonade";
-                break;
-            case 3:
-                flavor = "Water";
-                break;
-            default:
-                flavor = "Cola";
-                break;
-        }
+        String flavor = switch (flavorChoice) {
+            case 1 -> "Cola";
+            case 2 -> "Lemonade";
+            case 3 -> "Water";
+            default -> "Cola";
+        };
 
         Drink drink = new Drink(size, flavor);
         currentOrder.addItem(drink);
@@ -241,21 +192,12 @@ public class UserInterface {
         System.out.println("Select chip type:");
         System.out.println("1. Plain\n2. Salted\n3. BBQ");
         int chipChoice = getUserChoice();
-        String chipType = "";
-        switch (chipChoice) {
-            case 1:
-                chipType = "Plain";
-                break;
-            case 2:
-                chipType = "Salted";
-                break;
-            case 3:
-                chipType = "BBQ";
-                break;
-            default:
-                chipType = "Plain";
-                break;
-        }
+        String chipType = switch (chipChoice) {
+            case 1 -> "Plain";
+            case 2 -> "Salted";
+            case 3 -> "BBQ";
+            default -> "Plain";
+        };
 
         Chips chips = new Chips(chipType);
         currentOrder.addItem(chips);
@@ -263,10 +205,16 @@ public class UserInterface {
         displayOrderScreen();
     }
 
-    // Method to display the checkout screen
+    // Method to display the checkout screen and save the receipt
     public static void checkout() {
-        System.out.println("Your order has been placed!");
-        System.out.println(currentOrder);
+        // Generate the receipt string (you can format it as needed)
+        String receipt = "Your order has been placed!\n" + currentOrder.toString();  // currentOrder.toString() shows the details of the order
+
+        // Save the receipt to a text file
+        ReceiptManager.saveReceipt(receipt);
+
+        // Print the receipt to the console as well for verification
+        System.out.println(receipt);
     }
 
     // Method to cancel the current order
