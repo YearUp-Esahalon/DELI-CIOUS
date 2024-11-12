@@ -39,7 +39,7 @@ public class Order {
         return orderSummary.toString();
     }
 
-    // Getter for the items list (optional)
+    // Getter for the items list 
     public ArrayList<OrderItem> getItems() {
         return items;
     }

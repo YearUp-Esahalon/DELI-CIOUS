@@ -2,7 +2,7 @@ package com.pluralsight.Classes;
 
 public abstract class OrderItem {
     private String name;  // Name of the item (e.g., Sandwich, Chips, Drink)
-    protected double price;  // Price of the item
+    private double price;  // Price of the item
 
     // Constructor to initialize name and price
     public OrderItem(String name, double price) {
