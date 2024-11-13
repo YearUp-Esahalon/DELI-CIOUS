@@ -14,7 +14,6 @@ public class UserInterface {
         displayHomeScreen();
     }
 
-    // Home screen that offers the user a choice
     public static void displayHomeScreen() {
         System.out.println("Welcome to DELI-CIOUS Sandwich Shop!");
         System.out.println("1. New Order");
@@ -32,13 +31,11 @@ public class UserInterface {
         }
     }
 
-    // Start a new order (clear the old order and create a new one)
     public static void startNewOrder() {
         currentOrder = new Order();  // Reset the order
         displayOrderScreen();
     }
 
-    // Main order screen
     public static void displayOrderScreen() {
         System.out.println("Current Order:");
         System.out.println(currentOrder);
@@ -49,52 +46,36 @@ public class UserInterface {
         System.out.println("0. Cancel Order");
         int choice = getUserChoice();
 
-        // 1st Switch Statement (Using Traditional `break`)
         switch (choice) {
             case 1:
                 addSandwich();
-                break;  // Traditional break
+                break;
             case 2:
                 addDrink();
-                break;  // Traditional break
+                break;
             case 3:
                 addChips();
-                break;  // Traditional break
+                break;
             case 4:
                 checkout();
-                break;  // Traditional break
+                break;
             case 0:
                 cancelOrder();
-                break;  // Traditional break
+                break;
             default:
                 System.out.println("Invalid choice, please try again.");
                 displayOrderScreen();
-                break;  // Traditional break
-        }
-
-        // 2nd Switch Statement (Using Lambda `->`)
-        switch (choice) {
-            case 1 -> addSandwich();
-            case 2 -> addDrink();
-            case 3 -> addChips();
-            case 4 -> checkout();
-            case 0 -> cancelOrder();
-            default -> {
-                System.out.println("Invalid choice, please try again.");
-                displayOrderScreen();
-            }
+                break;
         }
     }
 
-    // Method to add a sandwich to the order
     public static void addSandwich() {
-        Sandwich sandwich = createSandwich();  // Create a sandwich using the method
-        currentOrder.addItem(sandwich);  // Add the sandwich to the order
+        Sandwich sandwich = createSandwich();
+        currentOrder.addItem(sandwich);
         System.out.println("Your sandwich has been added.");
-        displayOrderScreen();  // Return to the order screen after adding the sandwich
+        displayOrderScreen();
     }
 
-    // Method to create a sandwich by prompting the user for details
     public static Sandwich createSandwich() {
         System.out.println("Select bread type:");
         System.out.println("1. White\n2. Wheat\n3. Rye\n4. Wrap");
@@ -117,7 +98,6 @@ public class UserInterface {
             default -> "8\"";
         };
 
-        // Meat selection
         System.out.println("Select your meat:");
         System.out.println("1. Turkey\n2. Chicken\n3. Ham\n4. Roast Beef\n5. Veggie");
         int meatChoice = getUserChoice();
@@ -130,7 +110,6 @@ public class UserInterface {
             default -> "Turkey";
         };
 
-        // Toasted option
         System.out.println("Do you want your sandwich toasted?");
         System.out.println("1. Yes\n2. No");
         int toastedChoice = getUserChoice();
@@ -141,25 +120,48 @@ public class UserInterface {
         return sandwich;
     }
 
-    // Allow the user to add toppings to the sandwich
+    // Method to allow user to select cheese
+    public static void cheeseChoice(Sandwich sandwich) {
+        System.out.println("Select cheese type (or select 0 for no cheese):");
+        System.out.println("1. Cheddar\n2. Swiss\n3. American\n4. Provolone\n0. No Cheese");
+        int cheeseChoice = getUserChoice();
+        String cheese = switch (cheeseChoice) {
+            case 1 -> "Cheddar";
+            case 2 -> "Swiss";
+            case 3 -> "American";
+            case 4 -> "Provolone";
+            case 0 -> "No Cheese";  // Option for no cheese
+            default -> "No Cheese"; // Default is no cheese
+        };
+        if (!cheese.equals("No Cheese")) {
+            sandwich.addTopping(cheese); // Add cheese to sandwich if selected
+        }
+        System.out.println("Cheese has been " + (cheese.equals("No Cheese") ? "skipped." : "added."));
+    }
+
+    // Modify the addToppings method to include condiment choices
     public static void addToppings(Sandwich sandwich) {
         System.out.println("Select toppings (press 0 to stop):");
-        System.out.println("1. Cheese\n2. Lettuce\n3. Tomato\n4. Pickles\n5. Onion");
+        System.out.println("1. Lettuce\n2. Tomato\n3. Pickles\n4. Onion\n5. Mustard\n6. Mayo\n7. Oil and Vinegar");
         int toppingChoice;
         while ((toppingChoice = getUserChoice()) != 0) {
             switch (toppingChoice) {
-                case 1 -> sandwich.addTopping("Cheese");
-                case 2 -> sandwich.addTopping("Lettuce");
-                case 3 -> sandwich.addTopping("Tomato");
-                case 4 -> sandwich.addTopping("Pickles");
-                case 5 -> sandwich.addTopping("Onion");
+                case 1 -> sandwich.addTopping("Lettuce");
+                case 2 -> sandwich.addTopping("Tomato");
+                case 3 -> sandwich.addTopping("Pickles");
+                case 4 -> sandwich.addTopping("Onion");
+                case 5 -> sandwich.addTopping("Mustard");
+                case 6 -> sandwich.addTopping("Mayo");
+                case 7 -> sandwich.addTopping("Oil and Vinegar");
                 default -> System.out.println("Invalid choice.");
             }
             System.out.println("Add another topping or press 0 to stop.");
         }
+
+        // Call cheeseChoice method after adding other toppings
+        cheeseChoice(sandwich);
     }
 
-    // Method to add a drink to the order
     public static void addDrink() {
         System.out.println("Select drink size:");
         System.out.println("1. Small\n2. Medium\n3. Large");
@@ -187,7 +189,6 @@ public class UserInterface {
         displayOrderScreen();
     }
 
-    // Method to add chips to the order
     public static void addChips() {
         System.out.println("Select chip type:");
         System.out.println("1. Plain\n2. Salted\n3. BBQ");
@@ -205,26 +206,18 @@ public class UserInterface {
         displayOrderScreen();
     }
 
-    // Method to display the checkout screen and save the receipt
     public static void checkout() {
-        // Generate the receipt string (you can format it as needed)
-        String receipt = "Your order has been placed!\n" + currentOrder.toString();  // currentOrder.toString() shows the details of the order
-
-        // Save the receipt to a text file
+        String receipt = "Your order has been placed!\n" + currentOrder.toString();
         ReceiptManager.saveReceipt(receipt);
-
-        // Print the receipt to the console as well for verification
         System.out.println(receipt);
     }
 
-    // Method to cancel the current order
     public static void cancelOrder() {
-        currentOrder = new Order(); // Clear the current order
+        currentOrder = new Order();
         System.out.println("Your order has been canceled.");
         displayHomeScreen();
     }
 
-    // Utility method to get user input
     public static int getUserChoice() {
         return scanner.nextInt();
     }

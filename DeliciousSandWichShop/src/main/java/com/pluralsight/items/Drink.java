@@ -5,7 +5,9 @@ import com.pluralsight.Classes.OrderItem;
 public class Drink extends OrderItem {
 
     private String size;   // Size of the drink (Small, Medium, Large)
-    private String flavor; // Flavor of the drink (Cola, Lemonade, Water)
+    private String flavor;
+    private double price;
+    // Flavor of the drink (Cola, Lemonade, Water)
 
     public Drink(String size, String flavor) {
         super("Drink", 2.50); // Default price for drinks (this is a fallback)
@@ -15,7 +17,7 @@ public class Drink extends OrderItem {
     }
 
     // Set price based on drink size
-    private void setPriceBasedOnSize(String size) {
+    public void setPriceBasedOnSize(String size) {
         if (size.equals("Small")) {
             this.price = 2.00;
         } else if (size.equals("Medium")) {

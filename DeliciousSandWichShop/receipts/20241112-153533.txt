@@ -1,0 +1,10 @@
+Your order has been placed!
+Your Order:
+Sandwich: 4" White bread, Chicken meat, Toasted
+Toppings: Cheese Lettuce Tomato Pickles Onion
+Drink: $2.5
+Size: Small
+Flavor: Cola
+Price: $2.0
+Chips: $1.5
+Total: $10.0

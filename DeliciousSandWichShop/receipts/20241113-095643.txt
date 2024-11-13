@@ -1,0 +1,5 @@
+Your order has been placed!
+Your Order:
+Sandwich: 4" White bread, Turkey meat, Toasted
+Toppings: Lettuce Tomato Pickles Onion Cheddar
+Total: $8.0
