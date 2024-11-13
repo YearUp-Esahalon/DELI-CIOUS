@@ -1,0 +1,9 @@
+Your order has been placed!
+Your Order:
+Sandwich: 4" White bread, Turkey meat, Toasted
+Toppings: Lettuce Tomato Pickles Onion Mustard Mayo Cheddar
+Drink: $2.5
+Size: Small
+Flavor: Cola
+Price: $2.0
+Total: $11.0

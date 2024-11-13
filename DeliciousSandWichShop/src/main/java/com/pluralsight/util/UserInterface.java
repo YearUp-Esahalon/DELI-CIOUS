@@ -99,15 +99,16 @@ public class UserInterface {
         };
 
         System.out.println("Select your meat:");
-        System.out.println("1. Turkey\n2. Chicken\n3. Ham\n4. Roast Beef\n5. Veggie");
+        System.out.println("1. Steak\n2. Ham\n3. Salami\n4. Roast Beef\n5. Chicken\n6. Bacon");
         int meatChoice = getUserChoice();
         String meat = switch (meatChoice) {
-            case 1 -> "Turkey";
-            case 2 -> "Chicken";
-            case 3 -> "Ham";
+            case 1 -> "Steak";
+            case 2 -> "Ham";
+            case 3 -> "Salami";
             case 4 -> "Roast Beef";
-            case 5 -> "Veggie";
-            default -> "Turkey";
+            case 5 -> "Chicken";
+            case 6 -> "Bacon";
+            default -> "Steak";
         };
 
         System.out.println("Do you want your sandwich toasted?");
@@ -116,30 +117,38 @@ public class UserInterface {
         boolean toasted = toastedChoice == 1;
 
         Sandwich sandwich = new Sandwich(size, bread, meat, toasted);
+
+        // Handle extra meat
+        System.out.println("Do you want extra meat?");
+        System.out.println("1. Yes\n2. No");
+        int extraMeatChoice = getUserChoice();
+        sandwich.setExtraMeat(extraMeatChoice == 1);
+
+        // Handle cheese
+        System.out.println("Select cheese type (or select 0 for no cheese):");
+        System.out.println("1. American\n2. Provolone\n3. Cheddar\n4. Swiss\n0. No Cheese");
+        int cheeseChoice = getUserChoice();
+        if (cheeseChoice != 0) {
+            String cheese = switch (cheeseChoice) {
+                case 1 -> "American";
+                case 2 -> "Provolone";
+                case 3 -> "Cheddar";
+                case 4 -> "Swiss";
+                default -> "American";
+            };
+            sandwich.setCheese(cheese);
+        }
+
+        // Handle extra cheese
+        System.out.println("Do you want extra cheese?");
+        System.out.println("1. Yes\n2. No");
+        int extraCheeseChoice = getUserChoice();
+        sandwich.setExtraCheese(extraCheeseChoice == 1);
+
         addToppings(sandwich);
         return sandwich;
     }
 
-    // Method to allow user to select cheese
-    public static void cheeseChoice(Sandwich sandwich) {
-        System.out.println("Select cheese type (or select 0 for no cheese):");
-        System.out.println("1. Cheddar\n2. Swiss\n3. American\n4. Provolone\n0. No Cheese");
-        int cheeseChoice = getUserChoice();
-        String cheese = switch (cheeseChoice) {
-            case 1 -> "Cheddar";
-            case 2 -> "Swiss";
-            case 3 -> "American";
-            case 4 -> "Provolone";
-            case 0 -> "No Cheese";  // Option for no cheese
-            default -> "No Cheese"; // Default is no cheese
-        };
-        if (!cheese.equals("No Cheese")) {
-            sandwich.addTopping(cheese); // Add cheese to sandwich if selected
-        }
-        System.out.println("Cheese has been " + (cheese.equals("No Cheese") ? "skipped." : "added."));
-    }
-
-    // Modify the addToppings method to include condiment choices
     public static void addToppings(Sandwich sandwich) {
         System.out.println("Select toppings (press 0 to stop):");
         System.out.println("1. Lettuce\n2. Tomato\n3. Pickles\n4. Onion\n5. Mustard\n6. Mayo\n7. Oil and Vinegar");
@@ -157,9 +166,6 @@ public class UserInterface {
             }
             System.out.println("Add another topping or press 0 to stop.");
         }
-
-        // Call cheeseChoice method after adding other toppings
-        cheeseChoice(sandwich);
     }
 
     public static void addDrink() {

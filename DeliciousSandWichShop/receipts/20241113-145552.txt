@@ -1,0 +1,19 @@
+Your order has been placed!
+Your Order:
+Sandwich: 12" White bread, Ham meat, Toasted
+Cheese: Provolone
+Toppings: Lettuce Tomato
+Sandwich: 8" White bread, Salami meat, Toasted
+Cheese: Provolone
+Extra Cheese: Yes
+Extra Meat: Yes
+Toppings: Lettuce Tomato
+Drink: $2.5
+Size: Small
+Flavor: Cola
+Price: $2.0
+Sandwich: 4" White bread, Steak meat, Toasted
+Cheese: American
+Extra Meat: Yes
+Toppings: Lettuce Tomato
+Total: $35.6

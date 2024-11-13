@@ -9,6 +9,9 @@ public class Sandwich extends OrderItem {
     private ArrayList<String> toppings = new ArrayList<>(); // List of toppings
     private String meat; // Meat type (e.g., Turkey, Ham, Chicken)
     private boolean toasted; // Whether the sandwich is toasted or not
+    private String cheese; // Cheese type
+    private boolean extraCheese; // Whether extra cheese is selected
+    private boolean extraMeat; // Whether extra meat is selected
 
     // Constructor to initialize the sandwich with size, bread, meat, and toasted option
     public Sandwich(String size, String breadType, String meat, boolean toasted) {
@@ -40,13 +43,87 @@ public class Sandwich extends OrderItem {
         toppings.add(topping);
     }
 
-    // Calculate the total price of the sandwich
+    // Set cheese type for the sandwich
+    public void setCheese(String cheese) {
+        this.cheese = cheese;
+    }
+
+    // Add extra cheese
+    public void setExtraCheese(boolean extraCheese) {
+        this.extraCheese = extraCheese;
+    }
+
+    // Add extra meat
+    public void setExtraMeat(boolean extraMeat) {
+        this.extraMeat = extraMeat;
+    }
+
+    // Calculate the total price of the sandwich (including meat, cheese, toppings, etc.)
     @Override
     public double calculatePrice() {
         double price = getPrice();
 
-        // Charge extra for each topping
-        price += toppings.size() * 0.50;  // Each topping costs $0.50
+        // Charge extra for meat based on sandwich size
+        double meatPrice = 0.0;
+        switch (size) {
+            case "4\"":
+                meatPrice = 1.00;
+                break;
+            case "8\"":
+                meatPrice = 2.00;
+                break;
+            case "12\"":
+                meatPrice = 3.00;
+                break;
+        }
+        price += meatPrice;
+
+        // Charge for extra meat
+        if (extraMeat) {
+            switch (size) {
+                case "4\"":
+                    price += 0.50;
+                    break;
+                case "8\"":
+                    price += 1.00;
+                    break;
+                case "12\"":
+                    price += 1.50;
+                    break;
+            }
+        }
+
+        // Charge for cheese based on sandwich size
+        double cheesePrice = 0.0;
+        if (cheese != null) {
+            switch (size) {
+                case "4\"":
+                    cheesePrice = 0.75;
+                    break;
+                case "8\"":
+                    cheesePrice = 1.50;
+                    break;
+                case "12\"":
+                    cheesePrice = 2.25;
+                    break;
+            }
+            price += cheesePrice;
+        }
+
+        // Charge for extra cheese
+        if (extraCheese) {
+            switch (size) {
+                case "4\"":
+                    price += 0.30;
+                    break;
+                case "8\"":
+                    price += 0.60;
+                    break;
+                case "12\"":
+                    price += 0.90;
+                    break;
+            }
+        }
 
         return price;
     }
@@ -57,10 +134,24 @@ public class Sandwich extends OrderItem {
         StringBuilder sandwichDescription = new StringBuilder();
         sandwichDescription.append("Sandwich: ").append(size).append(" ").append(breadType).append(" bread, ")
                 .append(meat).append(" meat, ").append(toasted ? "Toasted" : "Not Toasted").append("\n");
+
+        if (cheese != null) {
+            sandwichDescription.append("Cheese: ").append(cheese).append("\n");
+        }
+
+        if (extraCheese) {
+            sandwichDescription.append("Extra Cheese: Yes\n");
+        }
+
+        if (extraMeat) {
+            sandwichDescription.append("Extra Meat: Yes\n");
+        }
+
         sandwichDescription.append("Toppings: ");
         for (String topping : toppings) {
             sandwichDescription.append(topping).append(" ");
         }
+
         return sandwichDescription.toString().trim();
     }
 

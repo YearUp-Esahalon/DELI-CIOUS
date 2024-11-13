@@ -30,9 +30,13 @@ public class Order {
     // Method to return a summary of the order
     @Override
     public String toString() {
+        // Create a StringBuilder to efficiently build the order summary as a string
         StringBuilder orderSummary = new StringBuilder();
+       // Start the order summary with a heading
         orderSummary.append("Your Order:\n");
+        // Loop through each OrderItem in the items list and append its string representation to the summary
         for (OrderItem item : items) {
+            // Append the total price at the end of the order summary
             orderSummary.append(item.toString()).append("\n"); // Prints each item's details
         }
         orderSummary.append("Total: $").append(calculateTotal()); // Adds the total price
