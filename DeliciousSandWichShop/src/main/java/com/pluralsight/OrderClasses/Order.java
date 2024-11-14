@@ -1,8 +1,5 @@
-package com.pluralsight.Classes;
+package com.pluralsight.OrderClasses;
 
-import com.pluralsight.items.Sandwich;
-import com.pluralsight.items.Chips;
-import com.pluralsight.items.Drink;
 import java.util.ArrayList;
 
 public class Order {

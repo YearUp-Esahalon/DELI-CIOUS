@@ -1,6 +1,6 @@
 package com.pluralsight.items;
 
-import com.pluralsight.Classes.OrderItem;
+import com.pluralsight.OrderClasses.OrderItem;
 
 public class Drink extends OrderItem {
 

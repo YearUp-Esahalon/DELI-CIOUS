@@ -1,0 +1,13 @@
+Your order has been placed!
+Your Order:
+Sandwich: 4" White bread, Steak meat, Toasted
+Cheese: American
+Extra Cheese: Yes
+Extra Meat: Yes
+Toppings: Lettuce Tomato Pickles Onion Mustard
+Drink: $2.5
+Size: Small
+Flavor: Cola
+Price: $2.0
+Chips: $1.5
+Total: $10.05

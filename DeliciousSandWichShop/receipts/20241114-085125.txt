@@ -1,0 +1,8 @@
+Your order has been placed!
+Your Order:
+Sandwich: 4" White bread, Steak meat, Toasted
+Cheese: American
+Extra Cheese: Yes
+Extra Meat: Yes
+Toppings: Lettuce Tomato Pickles
+Total: $8.05

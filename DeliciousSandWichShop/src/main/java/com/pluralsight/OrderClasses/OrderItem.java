@@ -1,4 +1,4 @@
-package com.pluralsight.Classes;
+package com.pluralsight.OrderClasses;
 
 public abstract class OrderItem {
     private String name;  // Name of the item (e.g., Sandwich, Chips, Drink)

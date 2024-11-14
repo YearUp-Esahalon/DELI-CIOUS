@@ -1,9 +1,10 @@
 package com.pluralsight.util;
 
-import com.pluralsight.Classes.Order;
+import com.pluralsight.OrderClasses.Order;
 import com.pluralsight.items.Sandwich;
 import com.pluralsight.items.Chips;
 import com.pluralsight.items.Drink;
+import com.pluralsight.Bonus.SignatureSandwich;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -38,7 +39,7 @@ public class UserInterface {
 
     public static void displayOrderScreen() {
         System.out.println("Current Order:");
-        System.out.println(currentOrder);
+        System.out.println(currentOrder);// Display the current order (items and details) to the user
         System.out.println("1. Add Sandwich");
         System.out.println("2. Add Drink");
         System.out.println("3. Add Chips");
@@ -70,12 +71,56 @@ public class UserInterface {
     }
 
     public static void addSandwich() {
-        Sandwich sandwich = createSandwich();
+        System.out.println("Do you want a Signature Sandwich or create a Custom Sandwich?");
+        System.out.println("1. Signature Sandwich");
+        System.out.println("2. Custom Sandwich");
+        int choice = getUserChoice();
+
+        if (choice == 1) {
+            addSignatureSandwich();  // Add Signature Sandwich
+        } else if (choice == 2) {
+            addCustomSandwich();  // Create a Custom Sandwich
+        } else {
+            System.out.println("Invalid choice, please try again.");
+            addSandwich();
+        }
+    }
+
+    // Method to add Signature Sandwich
+    public static void addSignatureSandwich() {
+        System.out.println("Select a Signature Sandwich:");
+        System.out.println("1. BLT");
+        System.out.println("2. Philly Cheese Steak");
+        int choice = getUserChoice();
+
+        SignatureSandwich sandwich = null;
+        switch (choice) {
+            case 1:
+                sandwich = new SignatureSandwich("BLT", "8\"");
+                break;
+            case 2:
+                sandwich = new SignatureSandwich("Philly Cheese Steak", "8\"");
+                break;
+            default:
+                System.out.println("Invalid choice, please try again.");
+                addSignatureSandwich();
+                return;
+        }
+
         currentOrder.addItem(sandwich);
-        System.out.println("Your sandwich has been added.");
+        System.out.println("Your signature sandwich has been added.");
         displayOrderScreen();
     }
 
+    // Method to create a custom sandwich (if the user opts for this)
+    public static void addCustomSandwich() {
+        Sandwich sandwich = createSandwich();
+        currentOrder.addItem(sandwich);
+        System.out.println("Your custom sandwich has been added.");
+        displayOrderScreen();
+    }
+
+    // Modified createSandwich() method to handle custom sandwich creation
     public static Sandwich createSandwich() {
         System.out.println("Select bread type:");
         System.out.println("1. White\n2. Wheat\n3. Rye\n4. Wrap");
@@ -153,7 +198,7 @@ public class UserInterface {
         System.out.println("Select toppings (press 0 to stop):");
         System.out.println("1. Lettuce\n2. Tomato\n3. Pickles\n4. Onion\n5. Mustard\n6. Mayo\n7. Oil and Vinegar");
         int toppingChoice;
-        while ((toppingChoice = getUserChoice()) != 0) {
+        while ((toppingChoice = getUserChoice()) != 0) { // User will keep getting prompted for toppings choice until they inout 0
             switch (toppingChoice) {
                 case 1 -> sandwich.addTopping("Lettuce");
                 case 2 -> sandwich.addTopping("Tomato");
