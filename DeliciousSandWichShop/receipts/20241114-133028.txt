@@ -1,0 +1,10 @@
+Your order has been placed!
+Your Order:
+BLT - 8" White bread, Bacon meat, Toasted
+Toppings: Cheddar Lettuce Tomato Ranch
+Sandwich: 12" White bread, Steak meat, Toasted
+Cheese: American
+Extra Cheese: Yes
+Extra Meat: Yes
+Toppings: Lettuce Tomato Pickles Onion Mustard Mayo
+Total: $25.15
