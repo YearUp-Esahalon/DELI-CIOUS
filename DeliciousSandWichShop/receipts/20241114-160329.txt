@@ -1,0 +1,17 @@
+********** DELI-CIOUS SANDWICH SHOP **********
+                Receipt
+===============================================
+Date: 11/14/2024 16:03:29
+===============================================
+Your order has been placed!
+Your Order:
+BLT - 8" White bread, Bacon meat, Toasted
+Toppings: Cheddar Lettuce Tomato Ranch
+Philly Cheese Steak - 8" White bread, Steak meat, Toasted
+Toppings: American Cheese Peppers Mayo
+Total: $18.0
+===============================================
+TOTAL: $18.00
+===============================================
+Thank you for your purchase!
+Visit us again at: www.deli-cious.com

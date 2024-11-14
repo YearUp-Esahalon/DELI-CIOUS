@@ -155,7 +155,7 @@ public class Sandwich extends OrderItem {
         return sandwichDescription.toString().trim();
     }
 
-    // Getters and setters for the fields
+    // Getters and setters
     public String getSize() {
         return size;
     }
@@ -196,21 +196,5 @@ public class Sandwich extends OrderItem {
         this.toasted = toasted;
     }
 
-    // SignatureSandwich subclass
-    public static class SignatureSandwich extends Sandwich {
-        // Constructor for Signature Sandwich that sets predefined values
-        public SignatureSandwich(String size, boolean toasted) {
-            super(size, "White", "Bacon", toasted);  // Default to White bread, Bacon meat
-            setCheese("Cheddar");  // Default cheese for Signature BLT
-            addTopping("Lettuce");
-            addTopping("Tomato");
-            addTopping("Ranch");
-        }
 
-        // Custom toString() for Signature Sandwich
-        @Override
-        public String toString() {
-            return "Signature Sandwich (BLT): " + super.toString();
-        }
-    }
 }
