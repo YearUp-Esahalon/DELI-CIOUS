@@ -21,7 +21,7 @@ public class ReceiptManager {
 
         // Try writing the receipt to the file
         try (FileWriter writer = new FileWriter(new File(directory, filename))) {
-            // Writing a basic receipt format
+            // Writing receipt format
             writer.write("********** DELI-CIOUS SANDWICH SHOP **********\n");
             writer.write("                Receipt\n");
             writer.write("===============================================\n");
